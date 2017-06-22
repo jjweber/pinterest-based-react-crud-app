@@ -18,7 +18,7 @@ class Modal extends Component {
             return null
 
         let modalStyle = {
-            position: 'absolute',
+            position: 'fixed',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -28,13 +28,13 @@ class Modal extends Component {
         }
 
         let backdropStyle = {
-            position: 'absolute',
+            position: 'fixed',
             width: '100%',
             height: '100%',
             top: '0px',
             left: '0px',
             zIndex: '9998',
-            background: 'rgba(0, 0, 0, 0.3)'
+            background: 'rgba(0, 0, 0, 0.7)'
         }
 
         return (

@@ -43,8 +43,9 @@ class ItemGrid extends Component {
     render() {
         let masonryOptions = {
             transitionDuration: '1.0s',
-            columnWidth: 100,
-            gutter: 10
+            fitWidth: true,
+            columnWidth: 60,
+            gutter: 5
         };
 
         let GridItems = this.props.comics
