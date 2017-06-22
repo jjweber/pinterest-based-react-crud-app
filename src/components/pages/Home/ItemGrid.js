@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
-
+import $ from 'jquery';
 import Masonry from 'react-masonry-component';
 
 import Item from './Item';
+import Modal from '../modal';
 
 class ItemGrid extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isModalOpen: false,
+            currentItemBeingSaved: null,
+            currentImageBeingSaved: ""
+        };
 
         this.saveComic = this.saveComic.bind(this);
     }
 
     saveComic(item) {
         console.log("Showing dialog to save this comic with options: ", item);
+        this.setState({currentItemBeingSaved: item});
+
+        let imageUrl = item.thumbnail.path + "." + item.thumbnail.extension;
+        this.setState({currentImageBeingSaved: imageUrl});
+
+        //$('#saveModal').modal();
+
+        //$(this.refs.modal.getDOMNode()).modal();
+
+        this.openModal();
+    }
+
+    openModal() {
+        this.setState({ isModalOpen: true })
+    }
+
+    closeModal() {
+        this.setState({ isModalOpen: false })
     }
 
     render() {
@@ -42,16 +67,13 @@ class ItemGrid extends Component {
                     {GridItems}
                 </Masonry>
 
-                <div className="modal fade container-fluid saveModal" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <h2>Delete Expense</h2>
-                            <form id="deleteExpenseForm">
-                                Will add to current or new board
-                            </form>
-                        </div>
+                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+                    <div className="modal-header"><h1>Save To Board</h1></div>
+                    <div className="modal-content">
+                        <p><img src={this.state.currentImageBeingSaved} className="grid-photo" /></p>
+                        <button onClick={() => this.closeModal()}>Close</button>
                     </div>
-                </div>
+                </Modal>
 
             </div>
         )
