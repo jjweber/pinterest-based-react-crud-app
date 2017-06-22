@@ -33,7 +33,7 @@ class Header extends Component {
                   <Link to="/">Home</Link>
                 </NavItem>
                 <NavItem>
-                  <Link to="/Explore">Explore</Link>
+                  <Link to="/Boards">Boards</Link>
                 </NavItem>
                 <NavItem>
                   <Link to="/Profile">Profile</Link>

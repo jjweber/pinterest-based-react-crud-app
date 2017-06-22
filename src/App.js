@@ -12,9 +12,6 @@ import Homepage from './components/pages/Home/homePage';
 import Explorepage from './components/pages/Explore/explorePage';
 import Profilepage from './components/pages/Profile/profilePage';
 
-// Includes
-import './Assets/css/default.min.css';
-
 class App extends Component {
   render() {
     return (
@@ -23,7 +20,7 @@ class App extends Component {
         <Header />
 
           <Route exact path='/' component={Homepage} />
-          <Route exact path='/Explore' component={Explorepage} />
+          <Route exact path='/Boards' component={Explorepage} />
           <Route exact path='/Profile' component={Profilepage} />
 
 
