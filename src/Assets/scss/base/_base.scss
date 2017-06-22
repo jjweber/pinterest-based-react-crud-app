@@ -76,6 +76,10 @@ header {
     margin-left: 0;
   }
 
+  .nav-item {
+    margin-right: 2rem;
+  }
+
   .navbar-default .navbar-nav>li>a {
     color: $white;
 
@@ -147,13 +151,17 @@ header {
   }
 }
 
-.grid-photo {
-  width: 30rem;
-  border: 1px solid #000;
+.my-gallery-class {
+  margin-top: 2rem;
 }
 
 .my-gallery-class > div {
   margin-bottom: 1rem;
+}
+
+.grid-photo {
+  width: 30rem;
+  border: 1px solid #000;
 }
 
 .modal-content {
@@ -166,17 +174,17 @@ header {
   }
 }
 
-////////////////////////
+///////////////////////////
 /// Explore Page Styles ///
-////////////////////////
+///////////////////////////
 
 
 
 
 
-////////////////////////
+///////////////////////////
 /// Profile Page Styles ///
-////////////////////////
+///////////////////////////
 
 #profileWrap {
   width: 100%;
@@ -208,12 +216,17 @@ header {
 }
 
 #profileContainer {
-  width: 80%;
-  margin: 4rem auto;
-  padding: 1rem;
-  border: 2px solid #000;
-  border-radius: 15px;
+
+  Form {
+    width: 80%;
+    margin: 4rem auto;
+    padding: 1rem;
+    border: 2px solid #000;
+    border-radius: 15px;
+  }
 }
+
+
 
 /////////////////////
 /// Footer Styles ///
@@ -221,7 +234,7 @@ header {
 
 footer {
   text-align: center;
-  position: sticky;
+  position: fixed;
   background: $white;
   border-top: 2px solid $black;
   bottom: 0;

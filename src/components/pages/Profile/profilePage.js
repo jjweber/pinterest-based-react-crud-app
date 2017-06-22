@@ -1,63 +1,109 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import * as firebase from 'firebase';
 
 class Profilepage extends Component {
   constructor(props) {
       super(props);
 
       this.state = {
+        speed: 10,
+
+        firstName: '',
+        lastName: '',
+        userName: '',
+        userEmail: ''
 
       };
+/*
+      this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+      this.handleLastNameChange = this.handleLastNameChange.bind(this);
+      this.handleUserNameChange = this.handleUserNameChange.bind(this);
+      this.handleUserEmailChange = this.handleUserEmailChange.bind(this);
+*/
+  }
+
+  handleNameChange(event) {
+        this.setState({firstName: event.target.value});
+    }
+
+    handleAmountChange(event) {
+        this.setState({lastName: event.target.value});
+    }
+
+    handleCategoryChange(event) {
+        this.setState({userName: event.target.value});
+    }
+
+    handleCategoryChange(event) {
+        this.setState({userEmail: event.target.value});
+    }
+
+  componentDidMount() {
+    const rootRef = firebase.database().ref().child('react');
+    // Reference out to specific location
+    const speedRef = rootRef.child('speed');
+    // Realtime listener
+    speedRef.on('value', snap => {
+      // New Data
+      this.setState({
+        speed: snap.val()
+      });
+    });
   }
 
   render() {
     return (
 
       <div id="profileContainer">
+        <h1>{this.state.speed}</h1>
+
+        <h1>Hello <span>username</span></h1>
+        <img src={'/src/images/profile-placeholder-image.jpeg'} />
         <Form>
           <FormGroup>
             <Label for="exampleEmail">Static</Label>
             <Input static>Some static value</Input>
           </FormGroup>
           <FormGroup>
-            <Label for="exampleEmail">Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+            <Label for="firstName">First Name</Label>
+            <Input type="text" name="text" id="firstName" placeholder="with a placeholder" onChange={this.handleFirstNameChange} value={this.state.firstName} />
           </FormGroup>
           <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+            <Label for="lastName">Last Name</Label>
+            <Input type="text" name="text" id="lastName" placeholder="with a placeholder" onChange={this.handleLastNameChange} value={this.state.lastName} />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleUrl">Url</Label>
-            <Input type="url" name="url" id="exampleUrl" placeholder="url placeholder" />
+            <Label for="userName">Username</Label>
+            <Input type="text" name="text" id="userName" placeholder="with a placeholder" onChange={this.handleUserNameChange} value={this.state.userName} />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleNumber">Number</Label>
-            <Input type="number" name="number" id="exampleNumber" placeholder="number placeholder" />
+            <Label for="userEmail">Email</Label>
+            <Input type="email" name="email" id="userEmail" placeholder="with a placeholder" onChange={this.handleUserEmailChange} value={this.state.userEmail} />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleDatetime">Datetime</Label>
-            <Input type="datetime" name="datetime" id="exampleDatetime" placeholder="datetime placeholder" />
+            <Label for="userPassword">Password</Label>
+            <Input type="password" name="password" id="userPassword" placeholder="password placeholder" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleDate">Date</Label>
-            <Input type="date" name="date" id="exampleDate" placeholder="date placeholder" />
+            <Label for="userUrl">Url</Label>
+            <Input type="url" name="url" id="userUrl" placeholder="url placeholder" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleTime">Time</Label>
-            <Input type="time" name="time" id="exampleTime" placeholder="time placeholder" />
+            <Label for="userNumber">Number</Label>
+            <Input type="number" name="number" id="userNumber" placeholder="number placeholder" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleColor">Color</Label>
-            <Input type="color" name="color" id="exampleColor" placeholder="color placeholder" />
+            <Label for="userColor">Color</Label>
+            <Input type="color" name="color" id="userColor" placeholder="color placeholder" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleSearch">Search</Label>
-            <Input type="search" name="search" id="exampleSearch" placeholder="search placeholder" />
+            <Label for="userSearch">Search</Label>
+            <Input type="search" name="search" id="userSearch" placeholder="search placeholder" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleSelect">Select</Label>
-            <Input type="select" name="select" id="exampleSelect">
+            <Label for="userSelect">Select</Label>
+            <Input type="select" name="select" id="userSelect">
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -66,23 +112,15 @@ class Profilepage extends Component {
             </Input>
           </FormGroup>
           <FormGroup>
-            <Label for="exampleSelectMulti">Select Multiple</Label>
-            <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleText">Text Area</Label>
-            <Input type="textarea" name="text" id="exampleText" />
+            <Label for="userText">Text Area</Label>
+            <Input type="textarea" name="text" id="userText" />
           </FormGroup>
           <FormGroup check>
             <Label check>
-              <Input type="radio" />{' '}
-              Option one is and that—be sure to include why it is great.
+              <Input type="radio" />{' '} Male
+            </Label>
+            <Label check>
+              <Input type="radio" />{' '} Female
             </Label>
           </FormGroup>
           <FormGroup check>

@@ -72,6 +72,7 @@ class ItemGrid extends Component {
                     <div className="modal-header"><h1>Save To Board</h1></div>
                     <div className="modal-content">
                         <p><img src={this.state.currentImageBeingSaved} className="grid-photo" /></p>
+                        <p>This is a description of the comic selected.</p>
                         <button onClick={() => this.closeModal()}>Close</button>
                     </div>
                 </Modal>
