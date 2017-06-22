@@ -22,15 +22,13 @@ class Homepage extends Component {
     getComicList() {
         var apiKey = "89629247aa3c362dd969166b19dec207";
         var url = "https://gateway.marvel.com:443/v1/public/characters?apikey=" + apiKey + "&limit=100";
-        var apiData = null;
+        //var apiData = null;
 
         return $.getJSON(url)
             .then((apiData) => this.setState({ comics: apiData.data.results }));
     }
 
     render() {
-        console.log("Can I see the data: ", this.state.comics);
-
         return (
             <div>
                 <ItemGrid comics={this.state.comics}></ItemGrid>
