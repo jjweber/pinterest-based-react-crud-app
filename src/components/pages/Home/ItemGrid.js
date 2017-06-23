@@ -161,11 +161,8 @@ class ItemGrid extends Component {
                     {GridItems}
                 </Masonry>
 
-<<<<<<< HEAD
                 <Modal id="savePinModal" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-=======
-                <Modal assignedClass="normal" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
->>>>>>> 26106b9a21396546cdc50b31bc05e8f58c8e7367
+
                     <div className="modal-header"><h1>Save To Board</h1></div>
                     <div className="modal-content">
                       <Container>
