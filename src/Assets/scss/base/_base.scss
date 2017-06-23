@@ -162,9 +162,16 @@ header {
 .grid-photo {
   width: 30rem;
   border: 1px solid #000;
+  border-radius: 1.5rem;
+
+  &:hover {
+    opacity: .5;
+  }
 }
 
 .modal-content {
+  overflow: auto;
+
 
   p {
 
@@ -172,7 +179,36 @@ header {
       max-width: 30rem;
     }
   }
+
+  h2 {
+    text-align: center;
+    margin: 1rem;
+  }
+
+  #comicDescription {
+    height: 6rem;
+    margin-bottom: 3rem;
+  }
 }
+
+.modal-header h1 {
+  margin: -2rem;
+}
+
+.modal-photo {
+  width: 30rem;
+  margin-top: 2rem;
+  border-radius: 1.5rem;
+}
+
+#left-side {
+  border-right: 2px solid #cacaca;
+}
+
+#boardModalBtns {
+  margin: 1rem 0 1rem 0;
+}
+
 
 ///////////////////////////
 /// Explore Page Styles ///
@@ -220,12 +256,16 @@ header {
   Form {
     width: 80%;
     margin: 4rem auto;
-    padding: 1rem;
+    padding: 2rem;
     border: 2px solid #000;
-    border-radius: 15px;
+    border-radius: 1.5rem;
+
+    .col-form-legend {
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
 }
-
 
 
 /////////////////////

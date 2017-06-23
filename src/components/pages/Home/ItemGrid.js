@@ -149,7 +149,7 @@ class ItemGrid extends Component {
             });
 
         return (
-            <div>
+            <div id="iGridComponent">
                 <Masonry
                     className={'my-gallery-class'} // default ''
                     elementType={'div'} // default 'div'
@@ -159,15 +159,21 @@ class ItemGrid extends Component {
                     {GridItems}
                 </Masonry>
 
-                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+                <Modal id="savePinModal" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
                     <div className="modal-header"><h1>Save To Board</h1></div>
                     <div className="modal-content">
-                        <Container>
-                          <Row>
-                            <Col><center><img src={this.state.currentImageBeingSaved} className="grid-photo" /></center></Col>
-                            <Col>
+                      <Container>
+                        <Row>
+                          <Col id="left-side">
+                          <center><img src={this.state.currentImageBeingSaved} className="modal-photo" /></center>
+                          <h2>{this.state.currentItemBeingSaved.name}</h2>
+                          <InputGroup>
+                            <Input id="comicDescription" type="textarea" onChange={this.updateDescription} placeholder="description" value={this.state.currentItemBeingSaved.description} />
+                          </InputGroup>
+                          </Col>
 
-                            <Nav tabs>
+                          <Col>
+                          <Nav tabs>
                             <NavItem>
                               <NavLink
                                 className={classnames({ active: this.state.activeTab === '1' })}
@@ -176,51 +182,44 @@ class ItemGrid extends Component {
                                 Save to New Board
                               </NavLink>
                             </NavItem>
-                              <NavItem>
-                                <NavLink
-                                  className={classnames({ active: this.state.activeTab === '2' })}
-                                  onClick={() => { this.toggle('2'); }}
-                                >
-                                  Save to Existing Board
-                                </NavLink>
-                              </NavItem>
-                            </Nav>
-                            <TabContent activeTab={this.state.activeTab}>
-                            <TabPane tabId="1">
-                              <InputGroup>
-                                <Input type="text" onChange={this.newBoardNameChanged} placeholder="New Board Name" value={this.state.currentItemBeingSaved.boardName} />
-                              </InputGroup>
+                            <NavItem>
+                              <NavLink
+                                className={classnames({ active: this.state.activeTab === '2' })}
+                                onClick={() => { this.toggle('2'); }}
+                              >
+                                Save to Existing Board
+                              </NavLink>
+                            </NavItem>
+                          </Nav>
+                          <TabContent activeTab={this.state.activeTab}>
+                          <TabPane tabId="1">
+                            <InputGroup>
+                              <Input type="text" onChange={this.newBoardNameChanged} placeholder="New Board Name" value={this.state.currentItemBeingSaved.boardName} />
+                            </InputGroup>
+                          </TabPane>
+                            <TabPane tabId="2">
+                              <Row>
+                                <Col sm="12">
+                                  <ListGroup>
+                                    {ExistingBoardOptions}
+                                  </ListGroup>
+                                </Col>
+                              </Row>
                             </TabPane>
-                              <TabPane tabId="2">
-                                <Row>
-                                  <Col sm="12">
-                                    <ListGroup>
-                                      {ExistingBoardOptions}
-                                    </ListGroup>
-                                  </Col>
-                                </Row>
-                              </TabPane>
-                            </TabContent>
+                          </TabContent>
 
-                            </Col>
-                          </Row>
-                          <Row>
+                          <Row id="boardModalBtns">
                             <Col>
-                              <h2>{this.state.currentItemBeingSaved.name}</h2>
-                              <InputGroup>
-                                <Input type="text" onChange={this.updateDescription} placeholder="description" value={this.state.currentItemBeingSaved.description} />
-                              </InputGroup>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <Button color="primary" size="lg" block onClick={() => this.saveComicToBoard()}>Save</Button>
+                              <Button id="modal-save" color="primary" size="lg" block onClick={() => this.saveComicToBoard()}>Save</Button>
                             </Col>
                             <Col>
-                              <Button color="secondary" size="lg" block onClick={() => this.closeModal()}>Cancel</Button>
+                              <Button id="modal-cancel" color="danger" size="lg" block onClick={() => this.closeModal()}>Cancel</Button>
                             </Col>
                           </Row>
-                        </Container>
+
+                          </Col>
+                        </Row>
+                      </Container>
                     </div>
                 </Modal>
 

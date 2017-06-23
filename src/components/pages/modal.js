@@ -20,8 +20,7 @@ class Modal extends Component {
             transform: 'translate(-50%, -50%)',
             zIndex: '9999',
             background: '#fff',
-            padding: '1rem'
-        }
+            padding: '1rem'        }
 
         let backdropStyle = {
             position: 'fixed',
