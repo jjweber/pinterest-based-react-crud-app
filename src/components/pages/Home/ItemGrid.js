@@ -116,7 +116,7 @@ class ItemGrid extends Component {
 
       for(let i = 0; i < existingBoards.length; i++) {
         let currentCheck = existingBoards[i];
-        if(currentCheck.name === boardName) return currentCheck.id;
+        if(currentCheck.name === boardName) return i;
       }
 
       return -1;
@@ -141,13 +141,13 @@ class ItemGrid extends Component {
         let GridItems = this.props.comics
             .filter( comic => (
                 comic.thumbnail.path.toLowerCase().indexOf("image_not_available".toLowerCase()) === -1))
-            .map( comic => {
-                return <Item item={comic} saveItem={this.saveComic} key={comic.id} className="image-element-class" />
+            .map( (comic, i) => {
+                return <Item item={comic} saveItem={this.saveComic} key={i} className="image-element-class" />
             });
 
         let ExistingBoardOptions = this.state.existingBoards
-            .map( board => {
-                return <ListGroupItem tag="button" key={board.id} onClick={() => this.chooseExistingBoard(board.name)} action>{board.name}</ListGroupItem>
+            .map( (board, i) => {
+                return <ListGroupItem tag="button" key={i} onClick={() => this.chooseExistingBoard(board.name)} action>{board.name}</ListGroupItem>
             });
 
         return (

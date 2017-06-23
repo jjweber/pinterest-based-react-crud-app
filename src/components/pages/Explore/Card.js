@@ -6,8 +6,13 @@ class Card extends Component {
   constructor(props) {
       super(props);
 
+      let board = this.props.item;
+      console.log("Board: ", board);
+      if(!board) board = {};
+      if(!board.pins) board.pins = [];
+
       this.state = {
-        board: this.props.item
+        board: board
       };
 
       this.editBoard = this.editBoard.bind(this);
@@ -26,14 +31,13 @@ class Card extends Component {
 
   deleteBoard() {
     console.log("Will pass up request to delete board with id of: ", this.state.board.id);
-    //this.props.removeItem(this.state.board.id);
+    this.props.removeItem(this.state.board.id);
   }
 
   render() {
-
     let boardPins = this.state.board.pins
-        .map( pin => {
-            return <img key={pin.id} src={pin.imageUrl} className="pin-photo" />
+        .map( (pin, i) => {
+            return <img key={i} src={pin.imageUrl} className="pin-photo" />
         });
 
     return (

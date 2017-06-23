@@ -12,14 +12,10 @@ class Explorepage extends Component {
       let boardData = JSON.parse(localStorage.getItem('boardData'));
       if(!boardData) boardData = [];
 
-      console.log("Current Boards: ", boardData);
-
       let initialBoardToShow = {};
       initialBoardToShow.pins = [];
 
       if(boardData.length) initialBoardToShow = boardData[0];
-
-      console.log("Current Board To Show: ", initialBoardToShow);
 
       this.state = {
         existingBoards: boardData,
@@ -115,7 +111,9 @@ class Explorepage extends Component {
   }
 
   editBoard(boardId) {
-    let currentBoardToEdit = this.state.existingBoards[boardId];
+    let indexOfBoardToEdit = this.getIndexOfBoardById(boardId);
+    let currentBoardToEdit = this.state.existingBoards[indexOfBoardToEdit];
+
     this.setState({editedBoardName: currentBoardToEdit.name});
     this.setState({currentBoardBeingEditing: currentBoardToEdit});
     this.openEditModal();
@@ -168,13 +166,22 @@ class Explorepage extends Component {
   }
 
   deleteBoard(boardId) {
-    console.log("Will delete board with id of: ", boardId);
     let tempBoards = this.state.existingBoards;
-    console.log("Existing Boards before removing: ", tempBoards);
-    tempBoards.splice(boardId, 1);
-    console.log("Exisitng boards after removing: ", tempBoards);
-    //this.setState({existingBoards: tempBoards});
-    //this.updateBoardsInStorage();
+    let indexOfBoardToDelete = this.getIndexOfBoardById(boardId);
+    tempBoards.splice(indexOfBoardToDelete, 1);
+    this.setState({existingBoards: tempBoards});
+    this.updateBoardsInStorage();
+
+    document.location.reload();
+  }
+
+  getIndexOfBoardById(boardId) {
+    let currentBoards = this.state.existingBoards;
+    for (let i = 0; i < currentBoards.length; i++) {
+      let boardToCheck = currentBoards[i];
+      if(boardToCheck.id === boardId) return i;
+    }
+    return -1;
   }
 
   getIndexOfPinById(pinId) {
@@ -190,8 +197,6 @@ class Explorepage extends Component {
     let indexOfPinToEdit = this.getIndexOfPinById(pinId);
     let pinToEdit = this.state.currentBoardToShow.pins[indexOfPinToEdit];
 
-    console.log("Pin Found to edit: ", pinToEdit);
-
     this.setState({currentPinBeingEditing: pinToEdit});
     this.setState({editedPinDescription: pinToEdit.description});
 
@@ -200,7 +205,8 @@ class Explorepage extends Component {
 
   deletePin(pinId) {
     let currentBoardShowing = this.state.currentBoardToShow;
-    currentBoardShowing.pins.splice(pinId, 1);
+    let indexOfPinToDelete = this.getIndexOfPinById(pinId);
+    currentBoardShowing.pins.splice(indexOfPinToDelete, 1);
 
     this.setState({currentBoardToShow: currentBoardShowing});
 
@@ -223,14 +229,14 @@ class Explorepage extends Component {
   render() {
 
     let boardCards = this.state.existingBoards
-        .map( board => {
-            return <Card item={board} editItem={this.editBoard} removeItem={this.deleteBoard} showItem={this.showBoardDetails} key={board.id} />
+        .map( (board, i) => {
+            return <Card item={board} editItem={this.editBoard} removeItem={this.deleteBoard} showItem={this.showBoardDetails} key={i} />
         });
 
 
     let currentBoardPinImages = this.state.currentBoardToShow.pins
-        .map( pin => {
-            return <div key={pin.id} className="pin-photo">
+        .map( (pin, i) => {
+            return <div key={i} className="pin-photo">
               <div className="pull-right pin-buttons">
                 <div onClick={() => this.editPin(pin.id)} className="pin-edit"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
                 <div onClick={() => this.deletePin(pin.id)} className="pin-delete"><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
