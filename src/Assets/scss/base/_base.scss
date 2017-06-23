@@ -214,9 +214,97 @@ header {
 /// Explore Page Styles ///
 ///////////////////////////
 
+.cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .cards_item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+  }
+}
+
+.card {
+  width: 100%;
+  max-width: 200px;
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+
+  .card_content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+.pin-photo {
+  float: left;
+  width: 50%;
+}
 
 
+#exploreWrap .modal-content {
+  box-shadow: none;
+}
 
+.full-screen {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.current-board-details .pin-photo {
+  width: 33%;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 2px;
+  margin: 2px;
+  position: relative;
+
+  .pin-delete {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: red;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  h2.pin-name {
+    text-align: center;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
 
 ///////////////////////////
 /// Profile Page Styles ///
