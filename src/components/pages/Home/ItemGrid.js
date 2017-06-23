@@ -14,7 +14,7 @@ class ItemGrid extends Component {
         let boardData = JSON.parse(localStorage.getItem('boardData'));
         if(!boardData) boardData = [];
 
-        //console.log("CUrrent board data from local storage: ", boardData);
+        console.log("CUrrent board data from local storage: ", boardData);
 
         let boards = [
           {id: 0, name: "Reds"},
@@ -100,7 +100,9 @@ class ItemGrid extends Component {
         this.state.existingBoards.push(newBoard);
       }
       else {
-        this.state.existingBoards[this.getBoardIndexByName(itemToSave.boardName)].pins.push(newPin);
+        let boardIndex = this.getBoardIndexByName(itemToSave.boardName);
+        newPin.id = this.state.existingBoards[boardIndex].pins.length;
+        this.state.existingBoards[boardIndex].pins.push(newPin);
       }
 
       this.closeModal();
@@ -159,7 +161,7 @@ class ItemGrid extends Component {
                     {GridItems}
                 </Masonry>
 
-                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+                <Modal assignedClass="normal" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
                     <div className="modal-header"><h1>Save To Board</h1></div>
                     <div className="modal-content">
                         <Container>
