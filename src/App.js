@@ -8,8 +8,8 @@ import {
 // Components
 import Header from './components/headerComponent/header';
 import Footer from './components/footerComponent/footer';
-import Homepage from './components/pages/Home/homePage';
 import Explorepage from './components/pages/Explore/explorePage';
+import Boardpage from './components/pages/Board/boardPage';
 import Profilepage from './components/pages/Profile/profilePage';
 
 class App extends Component {
@@ -19,8 +19,8 @@ class App extends Component {
       <div className="App">
         <Header />
 
-          <Route exact path='/' component={Homepage} />
-          <Route exact path='/Boards' component={Explorepage} />
+          <Route exact path='/' component={Explorepage} />
+          <Route exact path='/Boards' component={Boardpage} />
           <Route exact path='/Profile' component={Profilepage} />
 
 

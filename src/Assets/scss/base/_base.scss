@@ -7,12 +7,11 @@ body {
   min-height: 100%;
 
   h1 {
-    //background: $moneyGreen;
     text-align: center;
     padding: 2rem 0;
-    //margin: 0 -15px;
   }
 }
+
 
 /////////////////////
 /// Header Styles ///
@@ -22,17 +21,10 @@ header {
   position: relative;
   display: block;
   width: 100%;
-  //margin-top: 0;
-  //background: red;
-
 
   .logo {
-    //position: absolute;
     color: #FFF;
-    //display: block;
-    //margin-top: 2.5rem;
     margin-right: 1.5rem;
-    //top:50%; left: 0;
     font-size: 18px;
     @include translateY(15%);
   }
@@ -44,7 +36,6 @@ header {
   @media only screen and (min-width : 767px) {
     .logo {
       font-size: 22px;
-      //margin-top: 3rem;
       margin-left: 0;
     }
 
@@ -54,14 +45,18 @@ header {
   }
 
   #headerSearchBar {
-    //position: absolute;
-    //top:18%; left: 30px;
-    //width: 40%;
+    width: 100%;
+  }
+
+  @media only screen and (min-width : 570px) {
+    #headerSearchBar {
+      width: 380%;
+      margin-right: 2rem;
+    }
   }
 
   .navbar {
     width: 100%;
-    //background: $black;
     border: none;
     color: $white;
     margin-bottom: 0;
@@ -95,16 +90,11 @@ header {
   nav,
   nav ul,
   nav ul li {
-    //color: $black;
     margin-top: .5rem;
     padding: 0;
   }
 
   nav {
-    //background: red;
-    //position: absolute;
-    //top: 18%; right: 15px;
-    //@include translateY(20%);
 
     ul li {
       list-style-type: none;
@@ -118,9 +108,10 @@ header {
   }
 }
 
-////////////////////////
-/// Home Page Styles ///
-////////////////////////
+
+///////////////////////////
+/// Explore Page Styles ///
+///////////////////////////
 
 .my-gallery-class {
   width: 95%;
@@ -172,7 +163,6 @@ header {
 .modal-content {
   overflow: auto;
 
-
   p {
 
     img {
@@ -210,16 +200,15 @@ header {
 }
 
 
-
-
-///////////////////////////
-/// Explore Page Styles ///
-///////////////////////////
+/////////////////////////
+/// Board Page Styles ///
+/////////////////////////
 
 .cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: center;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   list-style: none;
@@ -235,7 +224,7 @@ header {
 }
 
 .card {
-  width: 220px;
+  width: 250px;
   background-color: white;
   border-radius: 0.25rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
@@ -248,6 +237,10 @@ header {
   flex-direction: column;
   overflow: hidden;
   position: relative;
+
+  &:hover {
+    opacity: .5;
+  }
 
   .pin-edit {
     width: 20px;
@@ -268,6 +261,10 @@ header {
     min-height: 100px;
   }
 
+  .card_title {
+    text-align: center;
+  }
+
   .card_content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -280,15 +277,28 @@ header {
     -ms-flex-direction: column;
     flex-direction: column;
     padding: 1rem;
+    margin-bottom: 2rem;
   }
 
   .card_footer {
     margin-top: 10px;
+
+    Button {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
   }
 }
 
 .pin-photo {
   float: left;
+  width: 50%;
+  max-height: 50%;
+}
+
+.board-photo {
+  height: 80px;
   width: 50%;
 }
 
@@ -327,18 +337,14 @@ header {
   position: relative;
 
   .pin-buttons {
-    background: #e3e3e3;
     height: 33px;
     width: 67px;
-    border: 1px solid #000;
-    border-radius: 5px;
     margin-bottom: 10px;
 
     .pin-edit {
       position: absolute;
       top: 20px;
       right: 55px;
-      color: yellow;
       font-size: 20px;
       cursor: pointer;
     }
@@ -348,7 +354,7 @@ header {
       top: 15px;
       right: 20px;
       color: red;
-      font-size: 30px;
+      font-size: 25px;
       cursor: pointer;
     }
   }
@@ -409,6 +415,21 @@ header {
       font-size: 18px;
       font-weight: bold;
     }
+  }
+}
+
+#setting-edit {
+  display: block;
+  margin: 5rem 0 2rem 3rem;
+
+  span {
+    margin-right: .5rem;
+  }
+}
+
+#settingsList {
+  li {
+    list-style: none;
   }
 }
 

@@ -1,106 +1,74 @@
 import React, { Component } from 'react';
-import { Button, Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import * as firebase from 'firebase';
+import { Button, Col, Form, FormGroup, Label, Input, FormText, Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem } from 'reactstrap';
 
 class Profilepage extends Component {
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        speed: 10,
+    this.state = {
+      modal: false,
+      userName: "",
+      userEmail: "",
+      value: ''
+    };
 
-        firstName: '',
-        lastName: '',
-        userName: '',
-        userEmail: ''
-
-      };
-/*
-      this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-      this.handleLastNameChange = this.handleLastNameChange.bind(this);
-      this.handleUserNameChange = this.handleUserNameChange.bind(this);
-      this.handleUserEmailChange = this.handleUserEmailChange.bind(this);
-*/
+    this.toggle = this.toggle.bind(this);
+    //this.updateUserName = this.updateUserName.bind(this);
+    //this.updateUserEmail = this.updateUserEmail.bind(this);
   }
 
-  handleNameChange(event) {
-        this.setState({firstName: event.target.value});
-    }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
-    handleAmountChange(event) {
-        this.setState({lastName: event.target.value});
-    }
+  openModal() {
+      this.setState({ isModalOpen: true });
+  }
 
-    handleCategoryChange(event) {
-        this.setState({userName: event.target.value});
-    }
+  closeModal() {
+      this.setState({ isModalOpen: false });
+  }
 
-    handleCategoryChange(event) {
-        this.setState({userEmail: event.target.value});
-    }
-
-  componentDidMount() {
-    const rootRef = firebase.database().ref().child('react');
-    // Reference out to specific location
-    const speedRef = rootRef.child('speed');
-    // Realtime listener
-    speedRef.on('value', snap => {
-      // New Data
-      this.setState({
-        speed: snap.val()
-      });
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
     });
   }
 
   render() {
     return (
-
       <div id="profileContainer">
-        <h1>Hello <span>username</span></h1>
-        <img src={'/src/images/profile-placeholder-image.jpeg'} />
-        <Form>
-          <FormGroup>
-            <Label for="firstName">First Name</Label>
-            <Input type="text" name="text" id="firstName" placeholder="with a placeholder" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="lastName">Last Name</Label>
-            <Input type="text" name="text" id="lastName" placeholder="with a placeholder" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="userName">Username</Label>
-            <Input type="text" name="text" id="userName" placeholder="with a placeholder" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="userEmail">Email</Label>
-            <Input type="email" name="email" id="userEmail" placeholder="with a placeholder" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="userUrl">Url</Label>
-            <Input type="url" name="url" id="userUrl" placeholder="url placeholder" />
-          </FormGroup>
-          <FormGroup  tag="fieldset" row>
-          <legend className="col-form-legend col-sm-2">Gender</legend>
-          <Col sm={10}>
-            <FormGroup check>
-              <Label check>
-                <Input type="radio" name="radio2" />{' '}
-                Male
-              </Label>
+      <h1>Hello <span>username</span></h1>
+      <Button id="setting-edit" color="danger" size="lg" onClick={this.toggle}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit{this.props.buttonLabel}</Button>
+
+      <ul id="settingsList">
+        <li>Username:</li>
+        <li>Email:</li>
+      </ul>
+
+
+      <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup>
+              <Label for="userName">Username</Label>
+              <Input type="text" name="text" id="userName" placeholder="with a placeholder" value={this.state.value} onChange={this.handleChange} />
             </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input type="radio" name="radio2" />{' '}
-                Female
-              </Label>
+            <FormGroup>
+              <Label for="userEmail">Email</Label>
+              <Input type="email" name="email" id="userEmail" placeholder="with a placeholder" />
             </FormGroup>
-          </Col>
-        </FormGroup>
-        </Form>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.saveUser}>Save</Button>{' '}
+          <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
       </div>
     );
   }
-
 }
 
 export default Profilepage;

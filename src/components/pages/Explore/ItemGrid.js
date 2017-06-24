@@ -14,13 +14,7 @@ class ItemGrid extends Component {
         let boardData = JSON.parse(localStorage.getItem('boardData'));
         if(!boardData) boardData = [];
 
-        console.log("CUrrent board data from local storage: ", boardData);
-
-        let boards = [
-          {id: 0, name: "Reds"},
-          {id: 1, name: "Blues"},
-          {id: 2, name: "Greens"}
-        ];
+        console.log("Current board data from local storage: ", boardData);
 
         this.state = {
             isModalOpen: false,

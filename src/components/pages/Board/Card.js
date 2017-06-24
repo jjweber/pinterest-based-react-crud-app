@@ -37,9 +37,10 @@ class Card extends Component {
   render() {
     let boardPins = this.state.board.pins
         .map( (pin, i) => {
-            return <img key={i} src={pin.imageUrl} className="pin-photo" />
+          if (i < 4) {
+            return <img key={i} src={pin.imageUrl} className="board-photo" />
+          }
         });
-
     return (
       <div className="cards_item">
         <div className="card">
